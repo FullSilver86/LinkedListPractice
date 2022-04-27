@@ -47,6 +47,20 @@ class LinkedList():
         else:
             print(f"object {data_to_search} at position {index}")
 
+    def insert(self, data, position):
+        self.data = data
+        self.position = position
+        node = self.head
+        current = 1
+        while current != (position-1):
+            node = node.nextnode
+            current += 1
+        nextnode = node.nextnode
+        node.nextnode = Node(data)
+        node = node.nextnode
+        node.nextnode = nextnode
+
+
 
 
 
@@ -57,4 +71,6 @@ l1.add_atfront(20)
 l1.add_atend(300)
 print(l1)
 l1.search(300)
+l1.insert(298, 2)
+print(l1)
 
