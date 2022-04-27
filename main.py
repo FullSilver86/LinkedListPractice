@@ -2,18 +2,22 @@ class Node():
     def __init__(self,data):
         self.data = data
         self.nextnode = None
+        self.previousnode = None
 
 class LinkedList():
 
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def add_atfront(self, data):
         self.data = data
         node = Node(data)
         if not self.head:
             self.head = node
+            self.tail = node
         else:
+            self.head.previousnode = node
             node.nextnode = self.head
             self.head = node
 
@@ -29,10 +33,14 @@ class LinkedList():
 
     def add_atend(self,data):
         self.data = data
-        node = self.head
-        while node.nextnode:
-            node = node.nextnode
-        node.nextnode = Node(data)
+        node = Node(data)
+        if not self.tail:
+            self.head = node
+            self.tail = node
+        else:
+            self.tail.nextnode = node
+            self.tail = node
+
 
 
     def search(self, data_to_search):
